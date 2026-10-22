@@ -8,9 +8,10 @@ import java.util.Date;
 @Entity
 @Table(name = "Employee")
 public class Employee {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long matricule;
 
     @Column( nullable = false )
     private String firstName;
@@ -34,13 +35,9 @@ public class Employee {
     public Employee(){
 
     }
-    public enum RoleType{
-        RH_MANAGER,
-        MANAGER
-    }
 
-    public Employee(long id, String firstName, String lastName, String email, String jobTitle, LocalDate hireDate, RoleType role) {
-        this.id = id;
+    public Employee(long matricule, String firstName, String lastName, String email, String jobTitle, LocalDate hireDate, RoleType role) {
+        this.matricule = matricule;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -49,12 +46,12 @@ public class Employee {
         this.role = role;
     }
 
-    public long getId() {
-        return id;
+    public long getMatricule() {
+        return matricule;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setMatricule(long matricule) {
+        this.matricule = matricule;
     }
 
     public String getFirstName() {
@@ -103,5 +100,10 @@ public class Employee {
 
     public void setRole(RoleType role) {
         this.role = role;
+    }
+
+    public enum RoleType{
+        RH_MANAGER,
+        MANAGER
     }
 }
