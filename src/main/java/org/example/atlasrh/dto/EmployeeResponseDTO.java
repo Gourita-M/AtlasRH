@@ -1,5 +1,6 @@
 package org.example.atlasrh.dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public record EmployeeResponseDTO(
@@ -8,6 +9,6 @@ public record EmployeeResponseDTO(
         String lastName,
         String email,
         String jobTitle,
-        Date hireDate,
+        LocalDate hireDate,
         String role
 ) {}
