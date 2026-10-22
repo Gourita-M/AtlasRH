@@ -8,7 +8,6 @@ public class AtlasRhApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AtlasRhApplication.class, args);
-        System.out.println("Testing");
     }
 
 }
