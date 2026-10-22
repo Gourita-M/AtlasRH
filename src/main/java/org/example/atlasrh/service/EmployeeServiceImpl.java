@@ -21,14 +21,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.employeeMapper = employeeMapper;
     }
 
-    // @Override
-    // public EmployeeResponseDTO create(EmployeeRequestDTO dto) {
-    //     Employee employee = employeeMapper.toEntity(dto);
+    @Override
+    public Employee create(Employee employee) {
 
-    //     Employee savedEmployee = employeeRepository.save(employee);
+        Employee savedEmployee = employeeRepository.save(employee);
 
-    //     return employeeMapper.toResponseDTO(savedEmployee);
-    // }
+        return savedEmployee;
+    }
 
     // @Override
     // public EmployeeResponseDTO update(Long id, EmployeeRequestDTO dto) {
