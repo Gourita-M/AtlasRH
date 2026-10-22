@@ -2,6 +2,7 @@ package org.example.atlasrh.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -24,7 +25,7 @@ public class Employee {
     private String jobTitle;
 
     @Column( nullable = false )
-    private Date hireDate;
+    private LocalDate hireDate;
 
     @Enumerated(EnumType.STRING)
     @Column( nullable = false )
@@ -38,7 +39,7 @@ public class Employee {
         MANAGER
     }
 
-    public Employee(long id, String firstName, String lastName, String email, String jobTitle, Date hireDate, RoleType role) {
+    public Employee(long id, String firstName, String lastName, String email, String jobTitle, LocalDate hireDate, RoleType role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -88,11 +89,11 @@ public class Employee {
         this.jobTitle = jobTitle;
     }
 
-    public Date getHireDate() {
+    public LocalDate getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(Date hireDate) {
+    public void setHireDate(LocalDate hireDate) {
         this.hireDate = hireDate;
     }
 
