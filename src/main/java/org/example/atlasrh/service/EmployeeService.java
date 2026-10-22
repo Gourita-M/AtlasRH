@@ -1,12 +1,13 @@
 package org.example.atlasrh.service;
 
 import org.example.atlasrh.dto.EmployeeResponseDTO;
+import org.example.atlasrh.model.Employee;
 
 import java.util.List;
 
 public interface EmployeeService {
 
-    //EmployeeResponseDTO create(EmployeeRequestDTO dto);
+    Employee create(Employee dto);
 
     //EmployeeResponseDTO update(Long id, Employee employee);
 
