@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-@Table(name = "Employee")
+@Table( name = "employee" )
 public class Employee {
     
     @Id
@@ -31,6 +31,10 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     @Column( nullable = false )
     private RoleType role;
+
+    @ManyToOne
+    @JoinColumn( name = "department_id" )
+    Department department;
 
     public Employee(){
 
@@ -102,8 +106,17 @@ public class Employee {
         this.role = role;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
     public enum RoleType{
         RH_MANAGER,
         MANAGER
     }
+
 }
