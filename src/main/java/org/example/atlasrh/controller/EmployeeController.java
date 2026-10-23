@@ -5,11 +5,7 @@ import org.example.atlasrh.model.Employee;
 import org.example.atlasrh.service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,13 +19,14 @@ public class EmployeeController {
     }
     @GetMapping
     public ResponseEntity<List<EmployeeResponseDTO>> getAll(){
+
         return ResponseEntity.ok(employeeService.viewAll());
     }
 
-    @PostMapping
-    public ResponseEntity<?> create(@RequestBody Employee employee){
+    @PostMapping("/{id}")
+    public ResponseEntity<?> create(@RequestBody Employee employee, @PathVariable Long id){
         try {
-            Employee created = employeeService.create(employee);
+            Employee created = employeeService.create(employee, id);
 
             return ResponseEntity
                     .status(HttpStatus.CREATED)
