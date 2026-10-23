@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface EmployeeService {
 
-    Employee create(Employee dto);
+    Employee create(Employee dto, Long departmentId);
 
     //EmployeeResponseDTO update(Long id, Employee employee);
 
-    //EmployeeResponseDTO viewEmployee(Long id);
+    EmployeeResponseDTO viewEmployee(Long id);
 
     List<EmployeeResponseDTO> viewAll();
 
-    //List<EmployeeResponseDTO> viewAllByManager(Long managerId);
+    List<EmployeeResponseDTO> viewAllByManager(Long managerId);
 }
