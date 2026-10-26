@@ -40,8 +40,7 @@ public class Employee {
 
     }
 
-    public Employee(long matricule, String firstName, String lastName, String email, String jobTitle, LocalDate hireDate, RoleType role) {
-        this.matricule = matricule;
+    public Employee(String firstName, String lastName, String email, String jobTitle, LocalDate hireDate, RoleType role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
