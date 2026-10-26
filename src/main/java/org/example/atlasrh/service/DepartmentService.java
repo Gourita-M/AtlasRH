@@ -13,7 +13,7 @@ public interface DepartmentService {
 
     DepartmentResponseDTO update(Long id, Employee employee);
 
-    DepartmentResponseDTO viewDepartment(Long id);
+    Department viewDepartment(Long id);
 
     List<DepartmentResponseDTO> viewAll();
 
