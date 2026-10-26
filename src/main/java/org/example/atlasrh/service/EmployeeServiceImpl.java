@@ -28,8 +28,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee create(Employee employee, Long departmentId) {
 
-        DepartmentResponseDTO department = departmentService.viewDepartment(departmentId);
-        //employee.setDepartment();
+        Department department = departmentService.viewDepartment(departmentId);
+        if(department == null){
+            return null;
+        }
+        employee.setDepartment(department);
 
         Employee savedEmployee = employeeRepository.save(employee);
 
