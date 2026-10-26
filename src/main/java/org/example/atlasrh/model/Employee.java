@@ -13,19 +13,19 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long matricule;
 
-    @Column( nullable = false )
+    @Column(name = "\"firstName\"" , nullable = false)
     private String firstName;
 
-    @Column( nullable = false )
+    @Column(name = "\"lastName\"" , nullable = false)
     private String lastName;
 
     @Column( nullable = false )
     private String email;
 
-    @Column( nullable = false )
+    @Column(name = "\"jobTitle\"" , nullable = false)
     private String jobTitle;
 
-    @Column( nullable = false )
+    @Column(name = "\"hireDate\"" , nullable = false)
     private LocalDate hireDate;
 
     @Enumerated(EnumType.STRING)
