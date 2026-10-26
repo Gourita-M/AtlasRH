@@ -32,7 +32,9 @@ public class Contract {
     @Column(nullable = false)
     private Long salary;
 
-    public Contrract(ContractType contractType, LocalDate startDate, LocalDate endDate, Long salary) {
+    @OneToMany
+
+    public Contract(ContractType contractType, LocalDate startDate, LocalDate endDate, Long salary) {
         this.contractType = contractType;
         this.startDate = startDate;
         this.endDate = endDate;
