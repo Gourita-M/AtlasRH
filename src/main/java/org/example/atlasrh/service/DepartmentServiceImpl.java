@@ -32,8 +32,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public DepartmentResponseDTO viewDepartment(Long id){
-        return departmentRepository.findById(id).map(departmentMapper::toResponseDTO).orElse(null);
+    public Department viewDepartment(Long id){
+        return departmentRepository.findById(id).orElse(null);
     }
 
     @Override
