@@ -1,4 +1,7 @@
 package org.example.atlasrh.repository;
 
-public interface LeaveRequestRepository {
+import org.example.atlasrh.model.LeaveRequest;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface LeaveRequestRepository extends JpaRepository<LeaveRequest, Long> {
 }
