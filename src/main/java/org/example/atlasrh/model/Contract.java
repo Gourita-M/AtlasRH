@@ -1,10 +1,7 @@
 package org.example.atlasrh.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -34,6 +31,7 @@ public class Contract {
     private Long salary;
 
     @OneToMany
+    @Setter(AccessLevel.NONE)
     List<Employee> employee;
 
     public Contract(ContractType contractType, LocalDate startDate, LocalDate endDate, Long salary) {
@@ -47,5 +45,9 @@ public class Contract {
         CDI,
         CDD,
         STAGE
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee.add(employee);
     }
 }
