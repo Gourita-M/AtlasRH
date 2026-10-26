@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public record EmployeeResponseDTO(
-        Long matricule,
+        Long id,
         String firstName,
         String lastName,
         String email,
