@@ -1,4 +1,7 @@
 package org.example.atlasrh.repository;
 
-public interface ContractRepository {
+import org.example.atlasrh.model.Contract;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ContractRepository extends JpaRepository<Contract, Long> {
 }
