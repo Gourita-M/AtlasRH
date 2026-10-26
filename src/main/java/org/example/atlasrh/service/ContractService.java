@@ -10,11 +10,11 @@ import java.util.List;
 
 public interface ContractService {
 
-    ContractResponseDTO create(Contract contract);
+    ContractResponseDTO create(Contract contract, Long id);
 
     ContractResponseDTO update(Long id, Contract contract);
 
-    Department viewDepartment(Long id);
+    ContractResponseDTO viewContract(Long id);
 
     List<ContractResponseDTO> viewAll();
 }
