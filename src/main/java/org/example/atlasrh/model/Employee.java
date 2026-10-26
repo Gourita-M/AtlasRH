@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table( name = "employee" )
@@ -35,6 +36,13 @@ public class Employee {
     @ManyToOne
     @JoinColumn( name = "department_id" )
     Department department;
+
+    @ManyToOne
+    @JoinColumn( name = "employee_id" )
+    Contract contract;
+
+    @OneToMany
+    List<LeaveRequest> leaveRequests;
 
     public Employee(){
 

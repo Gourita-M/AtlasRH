@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "contract")
@@ -33,6 +34,7 @@ public class Contract {
     private Long salary;
 
     @OneToMany
+    List<Employee> employee;
 
     public Contract(ContractType contractType, LocalDate startDate, LocalDate endDate, Long salary) {
         this.contractType = contractType;
