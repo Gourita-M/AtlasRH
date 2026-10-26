@@ -30,6 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         DepartmentResponseDTO department = departmentService.viewDepartment(departmentId);
         //employee.setDepartment();
+
         Employee savedEmployee = employeeRepository.save(employee);
 
         return savedEmployee;
