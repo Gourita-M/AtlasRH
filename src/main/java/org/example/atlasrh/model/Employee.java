@@ -12,7 +12,7 @@ public class Employee {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long matricule;
 
     @Column(name = "\"firstName\"" , nullable = false)
     private String firstName;
@@ -57,12 +57,12 @@ public class Employee {
         this.role = role;
     }
 
-    public long getId() {
-        return id;
+    public long getMatricule() {
+        return matricule;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setMatricule(long matricule) {
+        this.matricule = matricule;
     }
 
     public String getFirstName() {
