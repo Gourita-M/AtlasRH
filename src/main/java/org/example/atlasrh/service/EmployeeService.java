@@ -11,7 +11,7 @@ public interface EmployeeService {
 
     //EmployeeResponseDTO update(Long id, Employee employee);
 
-    EmployeeResponseDTO viewEmployee(Long id);
+    Employee viewEmployee(Long id);
 
     List<EmployeeResponseDTO> viewAll();
 
