@@ -38,4 +38,13 @@ public class EmployeeController {
                     .body(e.getMessage());
         }
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> viewEmployee(@PathVariable("id") Long id){
+        try{
+            return ResponseEntity.ok(employeeService.viewEmployee(id));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
 }
