@@ -15,19 +15,20 @@ import java.util.Optional;
 public class ContractServiceImpl implements ContractService{
     private final ContractRepository contractRepository;
     private final ContractMapper contractMapper;
-    private final EmployeeRepository employeeRepository;
+    private final EmployeeService employeeService;
 
     public ContractServiceImpl(ContractRepository contractRepository,
                                ContractMapper contractMapper,
-                               EmployeeRepository employeeRepository){
+                               EmployeeService employeeService){
         this.contractRepository = contractRepository;
         this.contractMapper = contractMapper;
-        this.employeeRepository = employeeRepository;
+        this.employeeService = employeeService;
     }
 
     @Override
     public ContractResponseDTO create(Contract contract, Long id){
-        Employee employee = employeeRepository.findById(id).orElse(null);
+        Employee employee = employeeService.viewEmployee(id);
+        System.out.println(employee.getMatricule());
         if(employee != null){
             contract.setEmployee(employee);
             Contract created = contractRepository.save(contract);
