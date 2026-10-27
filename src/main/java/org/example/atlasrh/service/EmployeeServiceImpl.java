@@ -52,12 +52,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 //     }
 
      @Override
-     public EmployeeResponseDTO viewEmployee(Long id) {
+     public Employee viewEmployee(Long id) {
          Employee employee = employeeRepository.findById(id)
                  .orElseThrow(() ->
                          new RuntimeException("Employee not found: " + id));
 
-         return employeeMapper.toResponseDTO(employee);
+         return employee;
      }
 
     @Override
