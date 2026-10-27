@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,7 +27,7 @@ public class LeaveType {
 
     @OneToMany
     @JoinColumn(name = "leavetype_id")
-    List<LeaveRequest> leaverequest;
+    List<LeaveRequest> leaverequest = new ArrayList<>();
 
     public LeaveType(String name, Long annualallowancedays) {
         this.name = name;
