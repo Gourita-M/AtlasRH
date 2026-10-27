@@ -3,6 +3,7 @@ package org.example.atlasrh.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class Employee {
     Contract contract;
 
     @OneToMany
-    List<LeaveRequest> leaveRequests;
+    List<LeaveRequest> leaveRequests = new ArrayList<>();
 
     public Employee(){
 
