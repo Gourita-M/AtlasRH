@@ -4,13 +4,13 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "contract")
 @Setter
 @Getter
-@NoArgsConstructor
 @ToString
 public class Contract {
 
@@ -32,8 +32,9 @@ public class Contract {
 
     @OneToMany
     @Setter(AccessLevel.NONE)
-    List<Employee> employee;
+    List<Employee> employee = new ArrayList<>();
 
+    public Contract(){}
     public Contract(ContractType contractType, LocalDate startDate, LocalDate endDate, Long salary) {
         this.contractType = contractType;
         this.startDate = startDate;
