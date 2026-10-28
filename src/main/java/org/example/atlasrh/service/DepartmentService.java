@@ -18,4 +18,6 @@ public interface DepartmentService {
     List<DepartmentResponseDTO> viewAll();
 
     List<DepartmentResponseDTO> viewAllByManager(Long managerId);
+
+    Department deleteDepartment(Long id);
 }
