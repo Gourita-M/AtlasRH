@@ -69,8 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
      @Override
      public List<EmployeeResponseDTO> viewAllByManager(Long managerId) {
-         throw new UnsupportedOperationException(
-                 "Manager relationship has not been implemented yet");
+         return null;
      }
 
      @Override
