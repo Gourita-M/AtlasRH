@@ -7,6 +7,7 @@ import org.example.atlasrh.model.Employee;
 import org.example.atlasrh.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 @Service
@@ -38,18 +39,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         return savedEmployee;
     }
 
-//     @Override
-//     public EmployeeResponseDTO update(Long id, EmployeeRequestDTO dto) {
-//         Employee existingEmployee = employeeRepository.findById(id)
-//                 .orElseThrow(() ->
-//                         new RuntimeException("Employee not found: " + id));
-//
-//         //employeeMapper.updateEntity(dto, existingEmployee);
-//
-//         Employee updatedEmployee = employeeRepository.save(existingEmployee);
-//
-//         return employeeMapper.toResponseDTO(updatedEmployee);
-//     }
+     @Override
+     public EmployeeResponseDTO update(Long id, Employee employee) {
+         Employee existingEmployee = employeeRepository.findById(id)
+                 .orElseThrow(() ->
+                         new RuntimeException("Employee not found: " + id));
+
+         Employee updatedEmployee = employeeRepository.save(existingEmployee);
+
+         return employeeMapper.toResponseDTO(updatedEmployee);
+     }
 
      @Override
      public Employee viewEmployee(Long id) {
@@ -73,4 +72,10 @@ public class EmployeeServiceImpl implements EmployeeService {
          throw new UnsupportedOperationException(
                  "Manager relationship has not been implemented yet");
      }
+
+     @Override
+     public List<EmployeeResponseDTO> searchForEmployee(String name, Long departmentId, Pageable pageable){
+        return null;
+     }
+
 }
