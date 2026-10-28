@@ -47,4 +47,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<DepartmentResponseDTO> viewAllByManager(Long managerId){
         return null;
     }
+
+    @Override
+    public Department deleteDepartment(Long id){
+        return null;
+    }
 }
