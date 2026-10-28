@@ -8,6 +8,7 @@ import org.example.atlasrh.repository.ContractRepository;
 import org.example.atlasrh.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,12 +71,23 @@ public class ContractServiceImpl implements ContractService{
     }
 
     @Override
-    public ContractResponseDTO endContract(Long contractId){
-        return null;
+    public boolean endContract(Long contractId){
+        Contract contract = contractRepository.findById(contractId).orElse(null);
+        if(contract != null){
+            contractRepository.delete(contract);
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override
-    public ContractResponseDTO getActiveContract(Long employeeId){
-        return null;
+    public List<ContractResponseDTO> getActiveContracts(Long employeeId){
+        LocalDate date = LocalDate.now();
+        List<ContractResponseDTO> activeContracts = contractRepository.findAll().stream()
+                .filter(c -> c.getEndDate().isBefore(date))
+                .map(contractMapper::toResponseDTO)
+                .toList();
+        return activeContracts;
     }
 }
