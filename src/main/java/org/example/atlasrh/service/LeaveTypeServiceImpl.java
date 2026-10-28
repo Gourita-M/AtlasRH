@@ -1,4 +1,34 @@
 package org.example.atlasrh.service;
 
-public class LeaveTypeServiceImpl {
+import org.example.atlasrh.dto.LeaveTypeResponseDTO;
+import org.example.atlasrh.mapper.LeaveTypeMapper;
+import org.example.atlasrh.model.LeaveType;
+import org.example.atlasrh.repository.LeaveTypeRepository;
+
+import java.util.List;
+
+public class LeaveTypeServiceImpl implements LeaveTypeService {
+    private final LeaveTypeRepository leaveTypeRepository;
+    private final LeaveTypeMapper leaveTypeMapper;
+
+    public LeaveTypeServiceImpl(LeaveTypeRepository leaveTypeRepository, LeaveTypeMapper leaveTypeMapper) {
+        this.leaveTypeRepository = leaveTypeRepository;
+        this.leaveTypeMapper = leaveTypeMapper;
+    }
+
+    @Override
+    public LeaveTypeResponseDTO create(LeaveType leaveType){
+        LeaveType created = leaveTypeRepository.save(leaveType);
+        return leaveTypeMapper.toResponseDTO(created);
+    }
+
+    @Override
+    public LeaveType viewLeaveType(Long id){
+        return null;
+    }
+
+    @Override
+    public List<LeaveTypeResponseDTO> viewAll(){
+        return null;
+    }
 }
