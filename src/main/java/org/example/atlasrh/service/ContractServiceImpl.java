@@ -68,4 +68,14 @@ public class ContractServiceImpl implements ContractService{
                 .toList();
         return getAll;
     }
+
+    @Override
+    public ContractResponseDTO endContract(Long contractId){
+        return null;
+    }
+
+    @Override
+    public ContractResponseDTO getActiveContract(Long employeeId){
+        return null;
+    }
 }
