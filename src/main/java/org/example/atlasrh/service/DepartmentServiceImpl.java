@@ -45,11 +45,16 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<DepartmentResponseDTO> viewAllByManager(Long managerId){
+//        List<DepartmentResponseDTO> departments = departmentRepository.findAll().stream()
+//                .filter(d -> d.getEmployees())
         return null;
     }
 
     @Override
-    public Department deleteDepartment(Long id){
-        return null;
+    public boolean deleteDepartment(Long id){
+
+        Department department = departmentRepository.findById(id).orElseThrow( () -> new RuntimeException("There is no Department with this ID"));
+        departmentRepository.delete(department);
+        return true;
     }
 }
