@@ -18,7 +18,7 @@ public interface ContractService {
 
     List<ContractResponseDTO> viewAll();
 
-    ContractResponseDTO endContract(Long contractId);
+    boolean endContract(Long contractId);
 
-    ContractResponseDTO getActiveContract(Long employeeId);
+    List<ContractResponseDTO> getActiveContracts(Long employeeId);
 }
