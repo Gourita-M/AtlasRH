@@ -19,5 +19,5 @@ public interface DepartmentService {
 
     List<DepartmentResponseDTO> viewAllByManager(Long managerId);
 
-    Department deleteDepartment(Long id);
+    boolean deleteDepartment(Long id);
 }
