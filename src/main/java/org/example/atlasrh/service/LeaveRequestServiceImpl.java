@@ -9,11 +9,13 @@ import org.example.atlasrh.model.LeaveType;
 import org.example.atlasrh.repository.EmployeeRepository;
 import org.example.atlasrh.repository.LeaveRequestRepository;
 import org.example.atlasrh.repository.LeaveTypeRepository;
+import org.springframework.stereotype.Service;
 
 import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class LeaveRequestServiceImpl implements LeaveRequestService{
     private final LeaveRequestRepository leaveRequestRepository;
     private final EmployeeRepository employeeRepository;
