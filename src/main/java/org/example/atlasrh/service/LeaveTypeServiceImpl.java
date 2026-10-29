@@ -4,9 +4,11 @@ import org.example.atlasrh.dto.LeaveTypeResponseDTO;
 import org.example.atlasrh.mapper.LeaveTypeMapper;
 import org.example.atlasrh.model.LeaveType;
 import org.example.atlasrh.repository.LeaveTypeRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class LeaveTypeServiceImpl implements LeaveTypeService {
     private final LeaveTypeRepository leaveTypeRepository;
     private final LeaveTypeMapper leaveTypeMapper;
