@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.example.atlasrh.Enum.RoleType;
 
 @Entity
 @Table( name = "employee" )
@@ -122,9 +123,5 @@ public class Employee {
         this.department = department;
     }
 
-    public enum RoleType{
-        RH_MANAGER,
-        MANAGER
-    }
 
 }
