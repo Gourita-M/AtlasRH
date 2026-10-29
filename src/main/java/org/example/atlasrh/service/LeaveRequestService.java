@@ -1,10 +1,7 @@
 package org.example.atlasrh.service;
 
 import org.example.atlasrh.Enum.LeaveStatus;
-import org.example.atlasrh.dto.DepartmentResponseDTO;
 import org.example.atlasrh.dto.LeaveRequestResponseDTO;
-import org.example.atlasrh.model.Department;
-import org.example.atlasrh.model.Employee;
 import org.example.atlasrh.model.LeaveRequest;
 
 import java.awt.print.Pageable;
