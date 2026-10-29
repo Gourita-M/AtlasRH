@@ -85,6 +85,7 @@ public class LeaveRequestServiceImpl implements LeaveRequestService{
     public boolean cancelRequest(Long employeeId, Long requestId) {
         LeaveRequest leaveRequest = leaveRequestRepository.findByIdAndEmployee_Matricule(requestId, employeeId);
         if(leaveRequest != null){
+            leaveRequest.setStatus(LeaveStatus.CANCELLED);
             leaveRequestRepository.save(leaveRequest);
             return true;
         }else{
