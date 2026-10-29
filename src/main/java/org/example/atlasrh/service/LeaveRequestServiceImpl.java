@@ -76,14 +76,20 @@ public class LeaveRequestServiceImpl implements LeaveRequestService{
     public List<LeaveRequestResponseDTO> getMyRequestsByStatus(Long employeeId, LeaveStatus status, Pageable pageable){
         return leaveRequestRepository.findAll().stream()
                 .filter(l -> l.getId().equals(employeeId))
-                .filter(l -> l.getStatus().equals(status))
+                .filter(l -> l.getStatus() == status)
                 .map(leaveRequestMapper::toResponseDTO)
                 .toList();
     }
 
     @Override
     public boolean cancelRequest(Long employeeId, Long requestId) {
-        return false;
+        LeaveRequest leaveRequest = leaveRequestRepository.findByIdAndEmployee_Matricule(requestId, employeeId);
+        if(leaveRequest != null){
+            leaveRequestRepository.save(leaveRequest);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
