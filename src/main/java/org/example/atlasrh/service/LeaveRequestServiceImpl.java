@@ -1,5 +1,6 @@
 package org.example.atlasrh.service;
 
+import org.example.atlasrh.Enum.LeaveStatus;
 import org.example.atlasrh.dto.LeaveRequestResponseDTO;
 import org.example.atlasrh.mapper.LeaveRequestMapper;
 import org.example.atlasrh.model.Employee;
@@ -62,9 +63,8 @@ public class LeaveRequestServiceImpl implements LeaveRequestService{
 
     @Override
     public List<LeaveRequestResponseDTO> viewAll(){
-        List<LeaveRequestResponseDTO> leaveRequests = leaveRequestRepository.findAll()
+        return leaveRequestRepository.findAll()
                 .stream().map(leaveRequestMapper::toResponseDTO).toList();
-        return leaveRequests;
     }
 
     @Override
@@ -73,8 +73,12 @@ public class LeaveRequestServiceImpl implements LeaveRequestService{
     }
 
     @Override
-    public List<LeaveRequestResponseDTO> getMyRequestsByStatus(Long employeeId, String status, Pageable pageable){
-        return null;
+    public List<LeaveRequestResponseDTO> getMyRequestsByStatus(Long employeeId, LeaveStatus status, Pageable pageable){
+        return leaveRequestRepository.findAll().stream()
+                .filter(l -> l.getId().equals(employeeId))
+                .filter(l -> l.getStatus().equals(status))
+                .map(leaveRequestMapper::toResponseDTO)
+                .toList();
     }
 
     @Override
