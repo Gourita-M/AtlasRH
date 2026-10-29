@@ -1,5 +1,6 @@
 package org.example.atlasrh.service;
 
+import org.example.atlasrh.Enum.RoleType;
 import org.example.atlasrh.dto.EmployeeResponseDTO;
 import org.example.atlasrh.mapper.EmployeeMapper;
 import org.example.atlasrh.model.Department;
@@ -34,9 +35,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         employee.setDepartment(department);
 
-        Employee savedEmployee = employeeRepository.save(employee);
+        return employeeRepository.save(employee);
 
-        return savedEmployee;
     }
 
      @Override
@@ -52,11 +52,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
      @Override
      public Employee viewEmployee(Long id) {
-         Employee employee = employeeRepository.findById(id)
+         return employeeRepository.findById(id)
                  .orElseThrow(() ->
                          new RuntimeException("Employee not found: " + id));
 
-         return employee;
      }
 
     @Override
@@ -68,8 +67,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
      @Override
-     public List<EmployeeResponseDTO> viewAllByManager(Long managerId) {
-         return null;
+     public List<EmployeeResponseDTO> viewAllByManager(Long managerId){
+        return employeeRepository.findAll().stream()
+                .filter(e -> e.getRole().equals(RoleType.MANAGER))
+                .map(employeeMapper::toResponseDTO)
+                .toList();
      }
 
      @Override
