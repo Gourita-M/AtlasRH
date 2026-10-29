@@ -29,7 +29,7 @@ public class ContractServiceImpl implements ContractService{
     @Override
     public ContractResponseDTO create(Contract contract, Long id){
         Employee employee = employeeService.viewEmployee(id);
-        System.out.println(employee.getMatricule());
+
         if(employee != null){
             contract.setEmployee(employee);
             Contract created = contractRepository.save(contract);
@@ -63,15 +63,16 @@ public class ContractServiceImpl implements ContractService{
 
     @Override
     public List<ContractResponseDTO> viewAll(){
-        List<ContractResponseDTO> getAll = contractRepository.findAll()
+
+        return contractRepository.findAll()
                 .stream()
                 .map(contractMapper::toResponseDTO)
                 .toList();
-        return getAll;
     }
 
     @Override
     public boolean endContract(Long contractId){
+
         Contract contract = contractRepository.findById(contractId).orElse(null);
         if(contract != null){
             contractRepository.delete(contract);
@@ -84,10 +85,9 @@ public class ContractServiceImpl implements ContractService{
     @Override
     public List<ContractResponseDTO> getActiveContracts(Long employeeId){
         LocalDate date = LocalDate.now();
-        List<ContractResponseDTO> activeContracts = contractRepository.findAll().stream()
+        return contractRepository.findAll().stream()
                 .filter(c -> c.getEndDate().isBefore(date))
                 .map(contractMapper::toResponseDTO)
                 .toList();
-        return activeContracts;
     }
 }
