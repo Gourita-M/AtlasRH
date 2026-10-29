@@ -24,11 +24,13 @@ public class LeaveTypeServiceImpl implements LeaveTypeService {
 
     @Override
     public LeaveType viewLeaveType(Long id){
-        return null;
+        return leaveTypeRepository.findById(id).orElseThrow(() -> new RuntimeException("LeaveType Can't be Found"));
     }
 
     @Override
     public List<LeaveTypeResponseDTO> viewAll(){
-        return null;
+        return leaveTypeRepository.findAll().stream()
+                .map(leaveTypeMapper::toResponseDTO)
+                .toList();
     }
 }
