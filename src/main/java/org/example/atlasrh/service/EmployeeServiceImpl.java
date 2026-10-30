@@ -6,9 +6,9 @@ import org.example.atlasrh.mapper.EmployeeMapper;
 import org.example.atlasrh.model.Department;
 import org.example.atlasrh.model.Employee;
 import org.example.atlasrh.repository.EmployeeRepository;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @Service
