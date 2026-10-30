@@ -1,5 +1,7 @@
 package org.example.atlasrh.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.example.atlasrh.Enum.LeaveStatus;
 import org.example.atlasrh.model.LeaveRequest;
 import org.example.atlasrh.service.LeaveRequestService;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/leaverequest")
+@Tag(name = "LeaveRequest", description = "LeaveRequest management")
 public class LeaveRequestController {
     private final LeaveRequestService leaveRequestService;
 
@@ -19,6 +22,7 @@ public class LeaveRequestController {
 
     //PostMan done
     @PostMapping
+    @Operation(summary = "Create LeaveRequest")
     public ResponseEntity<?> create(@RequestBody LeaveRequest leaveRequest,
                                     @RequestParam Long employeeId,
                                     @RequestParam Long leaveTypeId) {
@@ -33,6 +37,7 @@ public class LeaveRequestController {
 
     //PostMan done
     @PutMapping("/{id}")
+    @Operation(summary = "Update LeaveRequest")
     public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody LeaveRequest leaveRequest) {
         try {
             return ResponseEntity.ok(leaveRequestService.update(id, leaveRequest));
@@ -43,6 +48,7 @@ public class LeaveRequestController {
 
     //PostMan done
     @GetMapping("/{id}")
+    @Operation(summary = "View LeaveRequest By ID")
     public ResponseEntity<?> viewLeaveRequest(@PathVariable("id") Long id) {
         try {
             return ResponseEntity.ok(leaveRequestService.viewLeaveRequest(id));
@@ -53,6 +59,7 @@ public class LeaveRequestController {
 
     //PostMan done
     @GetMapping
+    @Operation(summary = "View All LeaveRequest")
     public ResponseEntity<?> viewAll() {
         try {
             return ResponseEntity.ok(leaveRequestService.viewAll());
@@ -63,6 +70,7 @@ public class LeaveRequestController {
 
     //PostMan done
     @GetMapping("/employee/{employeeId}")
+    @Operation(summary = "Get Requests By Employee ID")
     public ResponseEntity<?> getRequests(@PathVariable Long employeeId, Pageable pageable) {
         try {
             return ResponseEntity.ok(leaveRequestService.getRequests(employeeId, pageable));
@@ -73,6 +81,7 @@ public class LeaveRequestController {
 
     //PostMan done
     @GetMapping("/employee/{employeeId}/status")
+    @Operation(summary = "View LeaveRequest By Status")
     public ResponseEntity<?> getMyRequestsByStatus(@PathVariable Long employeeId,
                                                   @RequestParam LeaveStatus status,
                                                   Pageable pageable) {
@@ -85,6 +94,7 @@ public class LeaveRequestController {
 
     //PostMan done
     @PutMapping("/cancel")
+    @Operation(summary = "Cancel LeaveRequest By ID")
     public ResponseEntity<?> cancelRequest(@RequestParam Long employeeId, @RequestParam Long requestId) {
         try {
             boolean cancelled = leaveRequestService.cancelRequest(employeeId, requestId);
@@ -99,6 +109,7 @@ public class LeaveRequestController {
 
     //PostMan done
     @PutMapping("/{requestId}/approve")
+    @Operation(summary = "Approve LeaveRequest By ID")
     public ResponseEntity<?> approveRequest(@RequestParam Long managerId,
                                            @PathVariable Long requestId,
                                            @RequestParam(required = false) String comment) {
@@ -115,6 +126,7 @@ public class LeaveRequestController {
 
     //PostMan done
     @PutMapping("/{requestId}/reject")
+    @Operation(summary = "Reject LeaveRequest By ID")
     public ResponseEntity<?> rejectRequest(@RequestParam Long managerId,
                                           @PathVariable Long requestId,
                                           @RequestParam(required = false) String comment) {

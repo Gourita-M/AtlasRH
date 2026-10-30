@@ -1,5 +1,7 @@
 package org.example.atlasrh.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.example.atlasrh.dto.DepartmentResponseDTO;
 import org.example.atlasrh.model.Department;
 import org.example.atlasrh.service.DepartmentService;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/department")
+@Tag(name = "Department", description = "Department Management")
 public class DepartmentController {
     private final DepartmentService departmentService;
 
@@ -19,12 +22,14 @@ public class DepartmentController {
 
     //PostMan done
     @GetMapping
+    @Operation(summary = "Get all Departments")
     public ResponseEntity<?> findAll() {
         return ResponseEntity.ok(departmentService.viewAll());
     }
 
     //PostMan done
     @PostMapping
+    @Operation(summary = "Create Department")
     public ResponseEntity<?> save(@RequestBody Department department) {
         try{
             DepartmentResponseDTO dto = departmentService.create(department);

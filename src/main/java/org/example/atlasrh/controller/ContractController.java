@@ -1,6 +1,8 @@
 package org.example.atlasrh.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.example.atlasrh.model.Contract;
 import org.example.atlasrh.service.ContractService;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/contract")
+@Tag(name = "Contract", description = "Contract management")
 public class ContractController {
     private final ContractService contractService;
 
@@ -18,6 +21,7 @@ public class ContractController {
 
     //PostMan done
     @GetMapping
+    @Operation(summary = "Get all Contracts")
     public ResponseEntity<?> getAll(){
         try{
             return ResponseEntity.ok(contractService.viewAll());
@@ -28,6 +32,7 @@ public class ContractController {
 
     //PostMan done
     @PostMapping("/{id}")
+    @Operation(summary = "Create Contract")
     public ResponseEntity<?> save(@RequestBody Contract contract, @PathVariable("id") Long id){
         try{
                 return ResponseEntity.status(HttpStatus.CREATED)
