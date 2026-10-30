@@ -1,21 +1,34 @@
 # AtlasRH
 
-AtlasRH is a Spring Boot REST API for managing human resources data, with a focus on departments and employees. The project provides a simple backend for an HR system where departments can be created and employees can be registered and associated with a department.
+AtlasRH is a Spring Boot REST API for human resources management. The project has grown from a simple department/employee backend into a more complete HR platform covering employee contracts, leave management, and leave approval workflows.
+
+## What's new
+
+The latest version of the project includes several major improvements:
+
+- Contract management for employees with contract types: `CDI`, `CDD`, and `STAGE`
+- Leave type management with annual leave allowance rules
+- Leave request lifecycle: create, update, view, cancel, approve, and reject requests
+- Manager-based approval workflow using `LeaveStatus` values such as `PENDING`, `APPROVED`, `REJECTED`, and `CANCELLED`
+- Dedicated REST controllers for contracts and leave modules
+- DTO-based responses and MapStruct mapping for cleaner API data transfer
 
 ## Overview
 
-This application uses Java 17, Spring Boot, Spring Data JPA, PostgreSQL, and MapStruct to expose a clean REST interface for HR operations. It is designed to serve as a backend foundation for a company management or employee administration application.
+This application uses Java 17, Spring Boot 4.1.1, Spring Data JPA, PostgreSQL, MapStruct, and Maven to expose HR operations through a REST API. It is designed as a backend foundation for a company or HR administration system.
 
-## Features
+## Core features
 
 - Manage departments
-- Manage employees
-- Associate each employee with a department
-- Retrieve all departments and employees via REST APIs
-- JPA persistence with PostgreSQL
-- DTO-based responses for cleaner API contracts
+- Register employees and assign them to a department
+- Link an employee to a contract
+- List and query available leave types
+- Submit and track leave requests
+- Approve or reject employee leave requests
+- Persist HR data with JPA and PostgreSQL
+- Expose clean API responses using DTOs
 
-## Tech Stack
+## Tech stack
 
 - Java 17
 - Spring Boot 4.1.1
@@ -24,8 +37,9 @@ This application uses Java 17, Spring Boot, Spring Data JPA, PostgreSQL, and Map
 - PostgreSQL
 - Maven
 - MapStruct
+- Lombok
 
-## Project Structure
+## Project structure
 
 ```text
 AtlasRH/
@@ -45,7 +59,8 @@ AtlasRH/
 ├── pom.xml
 ├── mvnw
 ├── mvnw.cmd
-└── README.md
+├── README.md
+└── target/
 ```
 
 ## Prerequisites
@@ -55,7 +70,7 @@ Before running the project, make sure you have:
 - Java 17+
 - Maven 3.9+
 - PostgreSQL installed and running
-- A database named `atlasrhv1` (or update the credentials in the configuration)
+- A database named `atlasrhv1` or update the credentials in the configuration
 
 ## Configuration
 
@@ -76,7 +91,7 @@ spring.jpa.show-sql=true
 
 If your PostgreSQL setup is different, update the datasource URL, username, and password accordingly.
 
-## Running the Application
+## Running the application
 
 ### With Maven
 
@@ -91,76 +106,53 @@ The application will start on the default Spring Boot port:
 http://localhost:8080
 ```
 
-## API Endpoints
+## API endpoints
 
 ### Department endpoints
 
-#### Get all departments
-
 ```http
 GET /api/department
-```
-
-#### Create a department
-
-```http
 POST /api/department
-Content-Type: application/json
-```
-
-Example body:
-
-```json
-{
-  "name": "Engineering",
-  "description": "Software and product engineering team"
-}
 ```
 
 ### Employee endpoints
 
-#### Get all employees
-
 ```http
 GET /api/employee
+GET /api/employee/{id}
+POST /api/employee/{departmentId}
 ```
 
-#### Create an employee in a department
+### Contract endpoints
 
 ```http
-POST /api/employee/{departmentId}
-Content-Type: application/json
+GET /api/contract
+POST /api/contract/{employeeId}
 ```
 
-Example body:
+### Leave type endpoints
 
-```json
-{
-  "firstName": "John",
-  "lastName": "Doe",
-  "email": "john.doe@example.com",
-  "jobTitle": "Senior Developer",
-  "hireDate": "2024-01-15",
-  "role": "MANAGER"
-}
+```http
+GET /api/leavetype
+GET /api/leavetype/{id}
+POST /api/leavetype
 ```
 
-Example request:
+### Leave request endpoints
 
-```bash
-curl -X POST http://localhost:8080/api/employee/1 \
-  -H "Content-Type: application/json" \
-  -d '{
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "john.doe@example.com",
-    "jobTitle": "Senior Developer",
-    "hireDate": "2024-01-15",
-    "role": "MANAGER"
-  }'
+```http
+POST /api/leaverequest?employeeId={employeeId}&leaveTypeId={leaveTypeId}
+PUT /api/leaverequest/{id}
+GET /api/leaverequest/{id}
+GET /api/leaverequest
+GET /api/leaverequest/employee/{employeeId}
+GET /api/leaverequest/employee/{employeeId}/status?status=PENDING
+PUT /api/leaverequest/cancel?employeeId={employeeId}&requestId={requestId}
+PUT /api/leaverequest/{requestId}/approve?managerId={managerId}
+PUT /api/leaverequest/{requestId}/reject?managerId={managerId}
 ```
 
-## Data Model
+## Data model summary
 
 ### Department
 
@@ -179,15 +171,35 @@ curl -X POST http://localhost:8080/api/employee/1 \
 - `hireDate`
 - `role`
 - `department`
+- `contract`
 
-Employee roles currently include:
+### Contract
 
-- `RH_MANAGER`
-- `MANAGER`
+- `id`
+- `contractType` (`CDI`, `CDD`, `STAGE`)
+- `startDate`
+- `endDate`
+- `salary`
+
+### Leave type
+
+- `id`
+- `name`
+- `annualallowancedays`
+
+### Leave request
+
+- `id`
+- `startDate`
+- `endDate`
+- `reason`
+- `status`
+- `employee`
+- `leavetype`
 
 ## Notes
 
-This project is a solid backend foundation for an HR system and is currently focused on the core department/employee management flow. Some planned features, such as manager-based views and more advanced employee updates, are either not yet implemented or are still being expanded.
+AtlasRH is now positioned as a practical HR backend with both employee administration and leave-management workflows. The project is well-suited for learning, internal tooling, or further expansion with authentication, validation, and additional HR business rules.
 
 ## License
 
@@ -195,4 +207,4 @@ This project is currently unlicensed and intended for learning and internal deve
 
 ## Contributing
 
-Contributions are welcome. If you want to improve the API, add validation, tests, or new endpoints, feel free to fork the project and submit a pull request.
+Contributions are welcome. If you want to improve the API, add validation, write tests, or extend the HR modules, feel free to fork the project and submit a pull request.
