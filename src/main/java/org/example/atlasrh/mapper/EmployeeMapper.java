@@ -5,7 +5,7 @@ import org.example.atlasrh.model.Employee;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface EmployeeMapper {
+public interface EmployeeMapper{
 
     EmployeeResponseDTO toResponseDTO(Employee employee);
 

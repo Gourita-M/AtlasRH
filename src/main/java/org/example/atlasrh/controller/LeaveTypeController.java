@@ -15,6 +15,7 @@ public class LeaveTypeController {
         this.leaveTypeService = leaveTypeService;
     }
 
+    //PostMan done
     @PostMapping
     public ResponseEntity<?> create(@RequestBody LeaveType leaveType) {
         try {
@@ -25,6 +26,7 @@ public class LeaveTypeController {
         }
     }
 
+    //PostMan done
     @GetMapping("/{id}")
     public ResponseEntity<?> viewLeaveType(@PathVariable Long id) {
         try {
@@ -34,6 +36,7 @@ public class LeaveTypeController {
         }
     }
 
+    //PostMan done
     @GetMapping
     public ResponseEntity<?> viewAll() {
         try {

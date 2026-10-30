@@ -17,14 +17,17 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService){
         this.employeeService = employeeService;
     }
+
+    //PostMan done
     @GetMapping
     public ResponseEntity<List<EmployeeResponseDTO>> getAll(){
 
         return ResponseEntity.ok(employeeService.viewAll());
     }
 
+    //PostMan done
     @PostMapping("/{id}")
-    public ResponseEntity<?> create(@RequestBody Employee employee, @PathVariable Long id){
+    public ResponseEntity<?> create(@RequestBody Employee employee, @PathVariable("id") Long id){
         try {
             Employee created = employeeService.create(employee, id);
 
@@ -39,6 +42,7 @@ public class EmployeeController {
         }
     }
 
+    //PostMan done
     @GetMapping("/{id}")
     public ResponseEntity<?> viewEmployee(@PathVariable("id") Long id){
         try{

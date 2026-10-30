@@ -1,8 +1,5 @@
 package org.example.atlasrh.dto;
 
-import jakarta.persistence.Column;
-import org.example.atlasrh.model.Contract;
-
 import java.time.LocalDate;
 
 public record ContractResponseDTO(

@@ -1,7 +1,7 @@
 package org.example.atlasrh.service;
 
 import org.example.atlasrh.dto.ContractResponseDTO;
-import org.example.atlasrh.mapper.ContractMapper;
+import org.example.atlasrh.mapper.*;
 import org.example.atlasrh.model.Contract;
 import org.example.atlasrh.model.Employee;
 import org.example.atlasrh.repository.ContractRepository;

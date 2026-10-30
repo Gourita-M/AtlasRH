@@ -5,7 +5,7 @@ import org.example.atlasrh.model.LeaveRequest;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface LeaveRequestMapper {
+public interface LeaveRequestMapper{
 
     LeaveRequestResponseDTO toResponseDTO(LeaveRequest leaveRequest);
 }

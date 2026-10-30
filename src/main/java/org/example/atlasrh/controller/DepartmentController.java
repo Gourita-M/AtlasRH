@@ -17,11 +17,13 @@ public class DepartmentController {
         this.departmentService = departmentService;
     }
 
+    //PostMan done
     @GetMapping
     public ResponseEntity<?> findAll() {
         return ResponseEntity.ok(departmentService.viewAll());
     }
 
+    //PostMan done
     @PostMapping
     public ResponseEntity<?> save(@RequestBody Department department) {
         try{

@@ -5,7 +5,6 @@ import org.example.atlasrh.model.Contract;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface ContractMapper {
-
+public interface ContractMapper{
     ContractResponseDTO toResponseDTO(Contract contract);
 }

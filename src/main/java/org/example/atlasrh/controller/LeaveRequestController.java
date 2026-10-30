@@ -17,6 +17,7 @@ public class LeaveRequestController {
         this.leaveRequestService = leaveRequestService;
     }
 
+    //PostMan done
     @PostMapping
     public ResponseEntity<?> create(@RequestBody LeaveRequest leaveRequest,
                                     @RequestParam Long employeeId,
@@ -30,6 +31,7 @@ public class LeaveRequestController {
         }
     }
 
+    //PostMan done
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable("id") Long id, @RequestBody LeaveRequest leaveRequest) {
         try {
@@ -39,6 +41,7 @@ public class LeaveRequestController {
         }
     }
 
+    //PostMan done
     @GetMapping("/{id}")
     public ResponseEntity<?> viewLeaveRequest(@PathVariable("id") Long id) {
         try {
@@ -48,6 +51,7 @@ public class LeaveRequestController {
         }
     }
 
+    //PostMan done
     @GetMapping
     public ResponseEntity<?> viewAll() {
         try {
@@ -57,6 +61,7 @@ public class LeaveRequestController {
         }
     }
 
+    //PostMan done
     @GetMapping("/employee/{employeeId}")
     public ResponseEntity<?> getRequests(@PathVariable Long employeeId, Pageable pageable) {
         try {
@@ -66,6 +71,7 @@ public class LeaveRequestController {
         }
     }
 
+    //PostMan done
     @GetMapping("/employee/{employeeId}/status")
     public ResponseEntity<?> getMyRequestsByStatus(@PathVariable Long employeeId,
                                                   @RequestParam LeaveStatus status,
@@ -77,6 +83,7 @@ public class LeaveRequestController {
         }
     }
 
+    //PostMan done
     @PutMapping("/cancel")
     public ResponseEntity<?> cancelRequest(@RequestParam Long employeeId, @RequestParam Long requestId) {
         try {
@@ -90,6 +97,7 @@ public class LeaveRequestController {
         }
     }
 
+    //PostMan done
     @PutMapping("/{requestId}/approve")
     public ResponseEntity<?> approveRequest(@RequestParam Long managerId,
                                            @PathVariable Long requestId,
@@ -105,6 +113,7 @@ public class LeaveRequestController {
         }
     }
 
+    //PostMan done
     @PutMapping("/{requestId}/reject")
     public ResponseEntity<?> rejectRequest(@RequestParam Long managerId,
                                           @PathVariable Long requestId,

@@ -2,26 +2,21 @@ package org.example.atlasrh.controller;
 
 
 import org.example.atlasrh.model.Contract;
-import org.example.atlasrh.model.Employee;
-import org.example.atlasrh.repository.EmployeeRepository;
 import org.example.atlasrh.service.ContractService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/contract")
-public class ContractControler {
+public class ContractController {
     private final ContractService contractService;
-    private final EmployeeRepository employeeRepository;
 
-    public ContractControler(ContractService contractService, EmployeeRepository employeeRepository){
+    public ContractController(ContractService contractService){
         this.contractService = contractService;
-        this.employeeRepository = employeeRepository;
     }
 
+    //PostMan done
     @GetMapping
     public ResponseEntity<?> getAll(){
         try{
@@ -31,6 +26,7 @@ public class ContractControler {
         }
     }
 
+    //PostMan done
     @PostMapping("/{id}")
     public ResponseEntity<?> save(@RequestBody Contract contract, @PathVariable("id") Long id){
         try{
