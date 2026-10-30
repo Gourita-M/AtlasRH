@@ -3,8 +3,8 @@ package org.example.atlasrh.service;
 import org.example.atlasrh.Enum.LeaveStatus;
 import org.example.atlasrh.dto.LeaveRequestResponseDTO;
 import org.example.atlasrh.model.LeaveRequest;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 public interface LeaveRequestService {
