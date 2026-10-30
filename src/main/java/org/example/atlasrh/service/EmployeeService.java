@@ -2,8 +2,8 @@ package org.example.atlasrh.service;
 
 import org.example.atlasrh.dto.EmployeeResponseDTO;
 import org.example.atlasrh.model.Employee;
+import org.springframework.data.domain.Pageable;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 public interface EmployeeService {
