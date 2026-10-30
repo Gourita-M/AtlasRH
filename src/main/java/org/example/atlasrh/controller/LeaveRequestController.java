@@ -1,7 +1,5 @@
 package org.example.atlasrh.controller;
 
-import org.example.atlasrh.Enum.LeaveStatus;
-import org.example.atlasrh.dto.LeaveRequestResponseDTO;
 import org.example.atlasrh.model.LeaveRequest;
 import org.example.atlasrh.service.LeaveRequestService;
 import org.springframework.http.HttpStatus;
@@ -33,8 +31,8 @@ public class LeaveRequestController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<?> update(Long id,@RequestBody LeaveRequest leaveRequest){
+    @PostMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable("id") Long id,@RequestBody LeaveRequest leaveRequest){
         try{
             return ResponseEntity.ok(leaveRequestService.update(id,leaveRequest));
         }catch(Exception e){
@@ -43,23 +41,37 @@ public class LeaveRequestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> viewLeaveRequest(@PathVariable Long id){
+    public ResponseEntity<?> viewLeaveRequest(@PathVariable("id") Long id){
         try{
             return ResponseEntity.ok(leaveRequestService.viewLeaveRequest(id));
         }catch(Exception e){
             return ResponseEntity.notFound().build();
         }
     }
-//
-//    List<LeaveRequestResponseDTO> viewAll();
-//
-//    List<LeaveRequestResponseDTO> getRequests(Long employeeId, Pageable pageable);
-//
+
+    @GetMapping
+    public ResponseEntity<?> viewAll(){
+        try{
+            return ResponseEntity.ok(leaveRequestService.viewAll());
+        }catch(Exception e){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/page/{id}")
+    public ResponseEntity<?> getRequests(@PathVariable Long id, Pageable pageable){
+        try{
+            return ResponseEntity.ok(leaveRequestService.getRequests(id, pageable));
+        }catch(Exception e){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 //    List<LeaveRequestResponseDTO> getMyRequestsByStatus(Long employeeId, LeaveStatus status, Pageable pageable);
-//
+
 //    boolean cancelRequest(Long employeeId, Long requestId);
-//
+
 //    boolean approveRequest(Long managerId, Long requestId, String comment);
-//
+
 //    boolean rejectRequest(Long managerId, Long requestId, String comment);
 }
