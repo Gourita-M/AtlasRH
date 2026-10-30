@@ -1,8 +1,10 @@
 package org.example.atlasrh.controller;
 
+import org.example.atlasrh.model.LeaveType;
 import org.example.atlasrh.service.LeaveTypeService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/leavetype")
@@ -13,5 +15,31 @@ public class LeaveTypeController {
         this.leaveTypeService = leaveTypeService;
     }
 
+    @PostMapping
+    public ResponseEntity<?> create(@RequestBody LeaveType leaveType) {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .body(leaveTypeService.create(leaveType));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> viewLeaveType(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(leaveTypeService.viewLeaveType(id));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<?> viewAll() {
+        try {
+            return ResponseEntity.ok(leaveTypeService.viewAll());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
 }
